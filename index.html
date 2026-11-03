@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>THE CURRENT INVESTMENT</title>
+  <meta name="description" content="Invoices for THE CURRENT INVESTMENT, Electrical Solution.">
+  <meta name="theme-color" content="#F3F5F8">
+  <meta name="color-scheme" content="light dark">
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="TCI Invoices">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+
+  <script>
+    /* Apply the saved theme before first paint to avoid a flash. */
+    (function () {
+      try {
+        var t = localStorage.getItem('tci_theme');
+        if (t !== 'light' && t !== 'dark') t = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.setAttribute('data-theme', t);
+      } catch (e) {}
+    })();
+  </script>
+
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/ibm-plex-sans-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/fontawesome.min.css">
+  <link rel="stylesheet" href="assets/vendor/fontawesome/css/solid.min.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+  <a class="skip-link" href="#view">Skip to content</a>
+
+  <!-- Boot -->
+  <div id="boot" class="boot" role="status">
+    <span class="spinner spinner-lg" aria-hidden="true"></span>
+    <p class="boot-message"><span>Opening your invoices</span></p>
+  </div>
+
+  <!-- Login -->
+  <main id="login-screen" class="login" hidden>
+    <section class="login-aside" aria-hidden="true">
+      <span class="logo-plate login-logo">
+        <img data-brand="logo" alt="">
+        <span class="logo-mono" data-brand="initial">T</span>
+      </span>
+      <div class="login-aside-copy">
+        <p class="login-aside-name" data-brand="business">THE CURRENT INVESTMENT</p>
+        <p class="login-aside-text">Professional invoices, ready to print or send as PDF.</p>
+      </div>
+      <p class="login-aside-foot">Electrical Solution &middot; Kinondoni Biafra, Dar es Salaam</p>
+    </section>
+
+    <section class="login-main">
+      <form id="login-form" class="login-card" novalidate>
+        <span class="logo-plate login-logo-sm">
+          <img data-brand="logo" alt="">
+          <span class="logo-mono" data-brand="initial">T</span>
+        </span>
+        <div>
+          <h1 class="login-title" data-brand="app">THE CURRENT INVESTMENT</h1>
+          <p class="login-sub">Sign in to manage your invoices.</p>
+        </div>
+
+        <div class="field">
+          <label for="login-email">Email</label>
+          <input id="login-email" class="input" type="email" name="email" inputmode="email" autocomplete="username" autocapitalize="off" spellcheck="false" required>
+        </div>
+
+        <div class="field">
+          <label for="login-password">Password</label>
+          <div class="password-wrap">
+            <input id="login-password" class="input" type="password" name="password" autocomplete="current-password" required>
+            <button type="button" id="toggle-password" class="icon-btn" aria-label="Show password" aria-pressed="false"><i class="fa-solid fa-eye" aria-hidden="true"></i></button>
+          </div>
+        </div>
+
+        <label class="check">
+          <input type="checkbox" id="login-remember" name="remember">
+          <span>Remember login on this device</span>
+        </label>
+
+        <p id="login-error" class="login-error" role="alert" hidden>
+          <i class="fa-solid fa-circle-exclamation" aria-hidden="true"></i><span></span>
+        </p>
+
+        <button type="submit" class="btn btn-primary btn-lg btn-block">Sign in</button>
+        <p class="login-note">Invoices are stored in this browser on this device.</p>
+      </form>
+    </section>
+  </main>
+
+  <!-- App -->
+  <div id="app" class="app" hidden>
+    <aside id="sidebar" class="sidebar" aria-label="Main navigation">
+      <div class="sb-brand">
+        <span class="logo-plate sb-logo">
+          <img data-brand="logo" alt="">
+          <span class="logo-mono" data-brand="initial">T</span>
+        </span>
+        <span class="sb-names">
+          <strong data-brand="business">THE CURRENT INVESTMENT</strong>
+          <span>Invoices</span>
+        </span>
+        <button type="button" class="icon-btn sb-close" aria-label="Close menu"><i class="fa-solid fa-xmark" aria-hidden="true"></i></button>
+      </div>
+
+      <button type="button" class="btn btn-primary btn-block sb-new" data-action="new-invoice">
+        <i class="fa-solid fa-plus" aria-hidden="true"></i><span>New invoice</span>
+      </button>
+
+      <nav class="sb-nav" aria-label="Pages">
+        <a class="sb-link" href="#/invoices" data-route="invoices"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i><span>Invoices</span></a>
+        <a class="sb-link" href="#/invoice-create" data-route="invoice-create"><i class="fa-solid fa-file-circle-plus" aria-hidden="true"></i><span>New invoice</span></a>
+
+        <p class="sb-group">Manage</p>
+        <a class="sb-link" href="#/settings" data-route="settings"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
+        <a class="sb-link" href="#/backup" data-route="backup"><i class="fa-solid fa-database" aria-hidden="true"></i><span>Backup and restore</span></a>
+        <button type="button" class="sb-link" data-action="install" hidden><i class="fa-solid fa-download" aria-hidden="true"></i><span>Install app</span></button>
+        <button type="button" class="sb-link" data-action="logout"><i class="fa-solid fa-right-from-bracket" aria-hidden="true"></i><span>Log out</span></button>
+      </nav>
+
+    </aside>
+    <div id="scrim" class="scrim" hidden></div>
+
+    <div class="main">
+      <header class="topbar">
+        <button type="button" class="icon-btn tb-menu" aria-controls="sidebar" aria-expanded="false" aria-label="Open menu"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
+        <span class="logo-plate tb-logo">
+          <img data-brand="logo" alt="">
+          <span class="logo-mono" data-brand="initial">T</span>
+        </span>
+        <p class="tb-title" id="tb-title">Invoices</p>
+
+        <span class="tb-spacer"></span>
+
+        <button type="button" class="btn btn-primary tb-new" data-action="new-invoice" data-tip="Shortcut: N">
+          <i class="fa-solid fa-plus" aria-hidden="true"></i><span>New invoice</span>
+        </button>
+        <button type="button" class="icon-btn" id="tb-theme" aria-label="Switch theme"><i class="fa-solid fa-moon" aria-hidden="true"></i></button>
+        <button type="button" class="tb-account" id="tb-account" aria-haspopup="menu" aria-expanded="false" aria-label="Account menu">
+          <span class="tb-avatar"><i class="fa-solid fa-user" aria-hidden="true"></i></span>
+          <span class="tb-email" data-session="email"></span>
+          <i class="fa-solid fa-chevron-down tb-caret" aria-hidden="true"></i>
+        </button>
+      </header>
+
+      <main id="view" class="view" tabindex="-1"></main>
+    </div>
+
+    <nav class="tabbar" aria-label="Quick navigation">
+      <a class="tab-link" href="#/invoices" data-route="invoices"><i class="fa-solid fa-file-invoice" aria-hidden="true"></i><span>Invoices</span></a>
+      <button type="button" class="tab-link tab-new" data-action="new-invoice" aria-label="New invoice"><span class="tab-new-ic"><i class="fa-solid fa-plus" aria-hidden="true"></i></span><span>New</span></button>
+      <a class="tab-link" href="#/settings" data-route="settings"><i class="fa-solid fa-gear" aria-hidden="true"></i><span>Settings</span></a>
+      <button type="button" class="tab-link" aria-controls="sidebar" aria-expanded="false"><i class="fa-solid fa-bars" aria-hidden="true"></i><span>Menu</span></button>
+    </nav>
+  </div>
+
+  <div id="modal-root"></div>
+  <div id="toast-root" aria-live="polite"></div>
+  <div id="print-root" aria-hidden="true"></div>
+
+  <noscript>
+    <div class="noscript">THE CURRENT INVESTMENT needs JavaScript. Turn it on in your browser settings and reload this page.</div>
+  </noscript>
+
+  <script src="assets/js/utils.js" defer></script>
+  <script src="assets/js/database.js" defer></script>
+  <script src="assets/js/ui.js" defer></script>
+  <script src="assets/js/auth.js" defer></script>
+  <script src="assets/js/invoices.js" defer></script>
+  <script src="assets/js/settings.js" defer></script>
+  <script src="assets/js/pwa.js" defer></script>
+  <script src="assets/js/app.js" defer></script>
+</body>
+</html>
